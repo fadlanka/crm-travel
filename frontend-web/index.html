@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Travel CRM</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <button id="backBtn" class="icon-btn" hidden aria-label="Kembali">&#8592;</button>
+    <h1 id="title">Travel CRM</h1>
+  </header>
+
+  <main id="app"></main>
+
+  <div id="toast" class="toast" hidden></div>
+
+  <!-- Konfigurasi: alamat API backend Go. Ubah bila backend di host/port lain,
+       atau kosongkan (same-origin) bila file ini di-serve oleh backend sendiri. -->
+  <script>
+    window.API_BASE = "http://localhost:8080";
+  </script>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

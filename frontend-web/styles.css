@@ -1,0 +1,214 @@
+/* Travel CRM — vanilla CSS. Clean & professional, no framework. */
+:root {
+  --primary: #1565c0;
+  --primary-dark: #0d47a1;
+  --bg: #f6f7f9;
+  --card: #ffffff;
+  --border: #d5d9e0;
+  --text: #1a1a1a;
+  --muted: #667085;
+  --danger: #c62828;
+  --ok: #2e7d32;
+  --seat: 46px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* Top bar */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background: var(--primary);
+  color: #fff;
+}
+.topbar h1 { font-size: 18px; margin: 0; font-weight: 600; }
+.icon-btn {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-size: 22px;
+  cursor: pointer;
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+.icon-btn:hover { background: rgba(255, 255, 255, 0.15); }
+
+/* Layout */
+#app { max-width: 640px; margin: 0 auto; padding: 16px; }
+.narrow { max-width: 480px; }
+
+/* Cards */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 12px;
+}
+.card.tappable { cursor: pointer; transition: box-shadow .15s, border-color .15s; }
+.card.tappable:hover { border-color: var(--primary); box-shadow: 0 2px 10px rgba(0,0,0,.06); }
+.card.disabled { opacity: .6; cursor: not-allowed; }
+
+.row { display: flex; align-items: center; gap: 12px; }
+.row.between { justify-content: space-between; }
+.grow { flex: 1; }
+.muted { color: var(--muted); font-size: 13px; }
+.title-lg { font-size: 22px; margin: 4px 0 16px; }
+.title-md { font-size: 16px; font-weight: 600; margin: 12px 0 8px; }
+.center { text-align: center; }
+.mt { margin-top: 12px; }
+.mb { margin-bottom: 12px; }
+
+/* Buttons */
+button.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 13px 18px;
+  border: none;
+  border-radius: 999px;
+  background: var(--primary);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+button.btn:hover { background: var(--primary-dark); }
+button.btn:disabled { background: #b0bec5; cursor: not-allowed; }
+button.btn.secondary { background: #eceff1; color: var(--text); }
+button.btn.secondary:hover { background: #e0e4e7; }
+
+/* Forms */
+label.field { display: block; margin-bottom: 12px; }
+label.field span { display: block; font-size: 13px; color: var(--muted); margin-bottom: 4px; }
+input, select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 14px;
+  background: #fff;
+}
+input:focus, select:focus { outline: 2px solid var(--primary); border-color: var(--primary); }
+
+/* Info rows (ticket / detail) */
+.info { display: flex; padding: 4px 0; }
+.info .k { width: 130px; color: var(--muted); font-size: 14px; }
+.info .v { flex: 1; font-weight: 600; }
+
+/* Chips / badges */
+.chip {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+.chip.ok { background: #e8f5e9; color: var(--ok); }
+.chip.gray { background: #eceff1; color: var(--muted); }
+
+/* List rows */
+.list-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+.list-row .end { color: var(--muted); font-size: 13px; text-align: right; }
+.full { color: var(--danger); font-weight: 600; }
+
+/* ---- Seat map drawn as a real vehicle cabin ---- */
+.cabin {
+  border: 1.5px solid var(--border);
+  background: #f2f3f5;
+  border-radius: 44px 44px 18px 18px;
+  padding: 12px 16px 16px;
+  max-width: 300px;
+  margin: 0 auto;
+}
+.cabin-label { text-align: center; font-size: 11px; letter-spacing: 3px; color: var(--muted); }
+.cabin hr { border: none; border-top: 1px solid var(--border); margin: 8px 0; }
+.seat-row { display: flex; justify-content: center; align-items: center; gap: 8px; margin: 8px 0; }
+.aisle { width: 24px; }
+.seat {
+  width: var(--seat);
+  height: var(--seat);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #fff;
+  color: #1a1a1a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 0;
+}
+.seat .ico { font-size: 14px; line-height: 1; }
+.seat.selected { background: var(--primary); color: #fff; border-color: var(--primary); }
+.seat.booked { background: #b7bec7; color: #fff; cursor: not-allowed; }
+.seat.empty { border: none; background: transparent; cursor: default; }
+.seat.driver { background: #37474f; color: #fff; cursor: default; }
+
+/* Legend */
+.legend { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-bottom: 12px; }
+.legend .item { display: flex; align-items: center; gap: 4px; font-size: 12px; }
+.legend .swatch { width: 16px; height: 16px; border-radius: 4px; border: 1px solid var(--border); }
+
+/* Toast */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  background: var(--danger);
+  color: #fff;
+  padding: 12px 18px;
+  border-radius: 8px;
+  font-size: 14px;
+  box-shadow: 0 4px 16px rgba(0,0,0,.2);
+  z-index: 100;
+  max-width: 90vw;
+}
+.toast.ok { background: var(--ok); }
+
+/* Admin */
+.admin-wrap { display: flex; gap: 16px; }
+.admin-nav { display: flex; flex-direction: column; gap: 4px; min-width: 130px; }
+.admin-nav button {
+  text-align: left;
+  padding: 10px 12px;
+  border: none;
+  background: transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--text);
+}
+.admin-nav button.active { background: #e3f2fd; color: var(--primary-dark); font-weight: 600; }
+.admin-body { flex: 1; min-width: 0; }
+.stat-grid { display: flex; flex-wrap: wrap; gap: 12px; }
+.stat { min-width: 150px; flex: 1; }
+.stat .num { font-size: 28px; font-weight: 700; }
+
+.spinner { text-align: center; color: var(--muted); padding: 24px; }
+@media (max-width: 520px) {
+  .admin-wrap { flex-direction: column; }
+  .admin-nav { flex-direction: row; flex-wrap: wrap; }
+}
