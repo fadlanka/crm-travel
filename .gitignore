@@ -1,0 +1,18 @@
+# Rahasia — jangan pernah di-commit (pakai backend/.env.example sebagai contoh)
+.env
+*.env
+!*.env.example
+
+# Artefak tooling / pengujian
+.playwright-cli/
+*.log
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
